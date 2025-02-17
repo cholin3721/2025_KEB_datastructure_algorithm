@@ -2,6 +2,27 @@ import random
 import os
 import time
 
+
+class gamble :
+    def __init__ (self, low, high):
+        self.low = low
+        self.high = high
+        self.guess = (low+high) // 2
+        self.chance = 1
+
+    def when_its_low(self):
+        make_log(f'{self.guess} is lower. Chance left : {7 - self.chance}')
+        self.low =self.guess + 1
+        self.guess = (self.low + self.high) // 2
+        self.chance += 1
+
+    def when_its_high(self):
+        make_log(f'{self.guess} is bigger. Chance left : {7 - self.chance}')
+        self.high = self.guess - 1
+        self.guess = (self.low + self.high) // 2
+        self.chance += 1
+
+
 log_write = []
 
 
@@ -19,16 +40,16 @@ fullname = os.path.join(dir_name, filename)
 while True :
     if not os.path.isfile(fullname) :
         with open(fullname, 'w') as fp:
+            fp.write("gamble log\n")
+            fp.write("*"*30)
+            fp.write('\n')
             pass
     else :
         with open(fullname, 'a') as fp:
             game_count = 1
 
             while True :
-                guess = 50
-                low = 0
-                high = 100
-                chance = 1
+                game = gamble(0,100)
                 decorate = ""
                 if game_count % 10 == 1:
                     decorate = "1st try"
@@ -42,21 +63,14 @@ while True :
                 answer = random.randint(1, 100)
                 make_log(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + '\n')  # 문자열로 변환하고 줄안바꾸면 가독성 나빠짐
 
-                while chance <= 7:
-
-                    if guess == answer:
+                while game.chance <= 7:
+                    if game.guess == answer:
                         make_log(f'You win. Answer is {answer}')
                         break
-                    elif guess > answer:
-                        make_log(f'{guess} is bigger. Chance left : {7-chance}')
-                        high = guess - 1
-                        guess = (low + high) // 2
-                        chance = chance + 1
+                    elif game.guess > answer:
+                        game.when_its_high()
                     else:
-                        make_log(f'{guess} is lower. Chance left : {7-chance}')
-                        low = guess + 1
-                        guess = (low + high) // 2
-                        chance = chance + 1
+                        game.when_its_low()
                 else:
                     make_log(f'You lost. Answer is {answer}')
 
@@ -71,6 +85,8 @@ while True :
             if select != 'Y' :
                 for log in log_write :
                     fp.write(log)
+                fp.write("*" * 30)
+                fp.write("\n")
                 break
 
 
