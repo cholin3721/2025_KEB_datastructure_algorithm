@@ -3,10 +3,7 @@ def is_Even(n) -> bool:
     :param n: Integer
     :return: Even -> True, Odd -> False
     """
-    if n&1 == 0 :
-        return True
-    else :
-        return False
+    return True if n&1 == 0 else False
 
 a = 10
 b = 11
