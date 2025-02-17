@@ -1,0 +1,40 @@
+1st try
+2025-02-17 21:38:59
+
+50 is lower. Chance left : 6
+75 is lower. Chance left : 5
+88 is bigger. Chance left : 4
+81 is lower. Chance left : 3
+84 is bigger. Chance left : 2
+You win. Answer is 82
+
+
+2nd try
+2025-02-17 21:39:03
+
+You win. Answer is 50
+
+
+3rd try
+2025-02-17 21:39:03
+
+50 is bigger. Chance left : 6
+24 is lower. Chance left : 5
+37 is bigger. Chance left : 4
+30 is bigger. Chance left : 3
+27 is lower. Chance left : 2
+28 is lower. Chance left : 1
+You win. Answer is 29
+
+
+4th try
+2025-02-17 21:39:30
+
+50 is lower. Chance left : 6
+75 is bigger. Chance left : 5
+62 is lower. Chance left : 4
+68 is lower. Chance left : 3
+71 is bigger. Chance left : 2
+You win. Answer is 69
+
+
