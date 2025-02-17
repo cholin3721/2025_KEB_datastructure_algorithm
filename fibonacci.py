@@ -10,11 +10,14 @@ def fibonacci_memo(n) -> int:
         memo[n] = fibonacci_memo(n-2) + fibonacci_memo(n-1)  # 계산된 결과 값이 없을 경우 딕셔너리에 추가
         return memo[n]
 
-# def develop_fibonaaci(n) :
-#     if n < len(store)-1 :
-#         for i in range
-#     else :
-#         return store[n]
+def develop_fibonaaci(n) :
+    if n > len(store)-1 :
+        store[n] = develop_fibonaaci(n-2) + develop_fibonaaci(n-1)
+        return store[n]
+    elif n <= 1 :
+        return n
+    else :
+        return store[n]
 
 
 
