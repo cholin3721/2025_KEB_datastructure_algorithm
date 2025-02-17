@@ -12,6 +12,9 @@ def hap2(n) -> int :
         sum += n
     return sum
 
-#f(n) = n + 3
+#O(1)
+n = int(input())
+print(n*(n+1) // 2)
+
 print(hap(100))
 print(hap2(100))
