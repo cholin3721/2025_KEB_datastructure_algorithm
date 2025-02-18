@@ -7,18 +7,12 @@ def is_queue_full() :
     #         queue[front-1] = queue[front]
     #         front -= 1
     #         rear -= 1
-    if rear != (size-1) :
-        return False
-    elif (front == -1) and (rear == size-1):
+
+    # 위에 코드는 시간 복잡도가 O(N), 아래 코드는 시간복잡도 상수
+    if (rear+1)%size == front :
         return True
     else :
-        for i in range(front+1, size):
-            queue[front-1] = queue[front]
-            queue[i] = None
-        front -= 1
-        rear -= 1
         return False
-
 
 
 def is_queue_empty() :
@@ -33,7 +27,7 @@ def en_queue(data) :
     if is_queue_full():
         print("큐가 꽉 찼습니다.")
         return
-    rear += 1
+    rear = (rear + 1) % size
     queue[rear] = data
 
 def de_queue() :
@@ -41,7 +35,7 @@ def de_queue() :
     if is_queue_empty():
         print("큐가 비었습니다.")
         return None
-    front += 1
+    front = (front + 1) % size
     data = queue[front]
     queue[front] = None
     return data
@@ -51,12 +45,12 @@ def peek() :
     if is_queue_empty():
         print("큐가 비었습니다.")
         return None
-    return queue[front+1]
+    return queue[(front+1)%size]
 
 
 size = int(input("큐의 크기를 입력 : "))
 queue = [None for _ in range(size)]
-front = rear = -1
+front = rear = 0
 
 if __name__ == "__main__" :
     while True:
