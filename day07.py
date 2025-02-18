@@ -50,6 +50,38 @@ class LinkedList:
             node = node.next
         return " -> ".join(result)  # ✅ 문자열로 변환 후 반환 by chatgpt
 
+class Queue:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+        self._size = 0
+
+    def enqueue(self, data):
+        self._size += 1
+        node = Node(data)
+
+        if self.rear is None :
+            self.rear = node
+            self.front = node
+        else :
+            self.rear.next = node
+            self.rear = node
+
+    def dequeue(self):
+        if self.front is None :
+            raise IndexError('dequeue from empty queue')
+        self._size -= 1
+        temp = self.front
+        self.front = self.front.next
+        if self.front is None:
+            self.rear = None
+        return temp.data
+
+
+
+    def size(self)-> int :
+        return self._size
+
 if __name__ == "__main__" :
     # i = 0
     # while i < 20 :
@@ -59,10 +91,18 @@ if __name__ == "__main__" :
     #     i+=1
 
     # print(l)
-    l = LinkedList()
-    l.append(7)
-    l.append(-11)
-    l.append(8)
-    print(l)
-    l.remove(7)
-    print(l)
+    # l = LinkedList()
+    # l.append(7)
+    # l.append(-11)
+    # l.append(8)
+    # print(l)
+    # l.remove(7)
+    # print(l)
+
+    q = Queue()
+    q.enqueue(7)
+    q.enqueue(-11)
+    q.enqueue(8)
+    print(q.size())
+    print(q.dequeue())
+    print(q.size())
