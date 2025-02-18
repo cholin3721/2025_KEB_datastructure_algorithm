@@ -1,3 +1,5 @@
+import random
+
 class Node :
     def __init__(self, data, next=None):
         self.data = data
@@ -25,18 +27,42 @@ class LinkedList:
                 current = current.next
         return False
 
+
+    def remove(self, target):
+        if self.head.data == target:
+            self.head = self.head.next
+            return
+        current = self.head
+        previous = None
+
+        while current :
+            if current.data == target:
+                previous.next = current.next
+                break
+            previous = current
+            current = current.next
+
     def __str__(self):
         node = self.head
+        result = []
         while node is not None:
-            print(node.data)
+            result.append(str(node.data))  # ✅ 문자열 리스트로 변환 by chatgpt
             node = node.next
+        return " -> ".join(result)  # ✅ 문자열로 변환 후 반환 by chatgpt
 
 if __name__ == "__main__" :
+    # i = 0
+    # while i < 20 :
+    #     n = random.randint(0, 20)
+    #     l.append(n)
+    #     print(n, end=" ")
+    #     i+=1
+
+    # print(l)
     l = LinkedList()
-    l.append(7)  # head = node(7)을 가리킴
-    l.append(-11)  # current = node(7) 을 가리키고, 근데 next를 가지고 있지 않으니 , node(7)의 next는  node(-11)을 가리킴
-    l.append(8)  # current는 처음에 head(7)을 가리키고 이때는 node(7)은 next가 존재하니 한번돌고 current는 node(-11)을 가리킴
-    # while문을돌아 node(-11).next는 None이니깐 node(-11)의 넥스트에 node(8)을 연결시킴
+    l.append(7)
+    l.append(-11)
+    l.append(8)
     print(l)
-    print(l.search(999))
-    print(l.search(-11))
+    l.remove(7)
+    print(l)
