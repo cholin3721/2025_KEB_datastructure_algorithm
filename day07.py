@@ -104,5 +104,6 @@ if __name__ == "__main__" :
     q.enqueue(-11)
     q.enqueue(8)
     print(q.size())
-    print(q.dequeue())
+    for i in range(q.size()):
+        print(q.dequeue())
     print(q.size())
