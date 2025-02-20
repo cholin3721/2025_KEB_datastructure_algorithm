@@ -60,3 +60,53 @@ if __name__ == "__main__" :
                 break
             else :
                 current = current.right
+
+    deleteName = input("그룹을 입력하시오 : ")
+
+    current = root
+    parent = None
+    while True :
+        if deleteName == current.data :
+            if current.left == None and current.right == None:
+                if parent.left == current :
+                    parent.left = None
+                else :
+                    parent.right = None
+                del current
+
+
+            elif current.left != None and current.right == None:
+                if parent.left == current:
+                    parent.left = current.left
+                else :
+                    parent.right = current.left
+                del current
+
+
+            elif current.left == None and current.right != None:
+                if parent.left == current:
+                    parent.left = current.right
+                else:
+                    parent.right = current.right
+            else :
+                pass
+            # 여기는 과제
+            print(f"{deleteName}을 삭제하였습니다.")
+            break
+
+
+
+        elif deleteName < current.data :
+            if current.left is None :
+                print(deleteName, " 이/가 없습니다.")
+                break
+            parent = current
+            current = current.left
+
+        else :
+            if current.right is None :
+                print(deleteName, " 이/가 없습니다.")
+                break
+            parent = current
+            current = current.right
+
