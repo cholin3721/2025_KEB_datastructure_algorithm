@@ -17,15 +17,15 @@ def print_graph(g) :
     print()
 
 
-def dfs(g, current, find_vtx, visited):
-    visited.append(current)
-    if current == find_vtx:
-        return True
-    for vertex in range(g.SIZE):
-        if g.graph[current][vertex] != 0 and vertex not in visited:
-            if dfs(g, vertex, find_vtx, visited):
-                return True
-    return False
+# def dfs(g, current, find_vtx, visited):
+#     visited.append(current)
+#     if current == find_vtx:
+#         return True
+#     for vertex in range(g.SIZE):
+#         if g.graph[current][vertex] != 0 and vertex not in visited:
+#             if dfs(g, vertex, find_vtx, visited):
+#                 return True
+#     return False
 
 
 
