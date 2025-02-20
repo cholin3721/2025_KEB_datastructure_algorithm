@@ -28,9 +28,25 @@ def dfs(g, current, find_vtx, visited):
     return False
 
 
+
 def find_vertex(g, find_vtx):
-    visited = []
-    return dfs(g, 0, find_vtx, visited)
+    visited = [0 for _ in range(g.SIZE)]
+    return bfs(g, 0, find_vtx, visited)
+
+from collections import deque
+def bfs(g, i, find_vtx, visited):
+    queue = deque([i])
+    visited[i] = 1
+    while queue:
+        i = queue.popleft()
+        if find_vtx == i :
+            return True
+        else :
+            for j in range(len(g)):
+                if g[i][j] == 1 and not visited[j]:
+                    queue.append(j)
+                    visited[j] = 1
+            return False
 
 
 G1 = None
