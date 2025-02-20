@@ -42,20 +42,40 @@ def search(root, value):
     return None
 
 from collections import deque
+#
+# def bfs(node, visited):
+#     queue = deque([node])
+#     visited.append(node)
+#
+#     while queue:
+#         i = queue.popleft()
+#         print(i.data)  # 방문한 노드 출력
+#
+#         # 왼쪽 자식이 있고 방문한 적 없으면 추가
+#         if i.left and i.left not in visited:
+#             queue.append(i.left)
+#             visited.append(i.left)
+#
+#         # 오른쪽 자식이 있고 방문한 적 없으면 추가
+#         if i.right and i.right not in visited:
+#             queue.append(i.right)
+#             visited.append(i.right)
+
+from collections import deque
+
 def bfs(node, visited):
     queue = deque([node])
     visited.append(node)
     while queue:
         i = queue.popleft()
         print(i.data)
-        if i.left and i not in visited:
+        if i.left and i.left not in visited:
             queue.append(i.left)
-            visited.append(i)
-            print(i.left.data)
-        if i.right and i not in visited:
+            visited.append(i.left)
+
+        if i.right and i.right not in visited:
             queue.append(i.right)
-            visited.append(i)
-            print(i.right.data)
+            visited.append(i.right)
 
 
 
