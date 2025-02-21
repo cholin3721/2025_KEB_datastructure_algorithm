@@ -1,28 +1,67 @@
-def insertion_sort(a_list):
-    for i in range(1, len(a_list)):
-        value = a_list[i]
-        while i > 0 and a_list[i-1] > value :
-            a_list[i] = a_list[i-1]
-            i = i-1
-        a_list[i] = value
-    return a_list
+import time
+import random
+
+def time_decorator(func):
+    def wrapper(*arg):
+        s = time.time()
+        r = func(*arg)  # 매개변수 패킹 언패킹해서 *args도 가능
+        e = time.time()
+        print(f'실행시간 : {e - s}초')
+        return r
+    return wrapper
 
 
-def bubble_sort(a_list):
-    list_length = len(a_list)-1
-    for i in range(list_length):
-        no_swaps = True
-        for j in range(list_length -i) :
-            if a_list[j] > a_list[j+1]:
-                a_list[j], a_list[j+1] = a_list[j+1], a_list[j]
-                no_swaps = False
-                #print(j, end = ' ') #성능 측정용 print
-        if no_swaps :
-            return a_list
-    return a_list
+@time_decorator
+def insertion_sort(l):
+    for i in range(1, len(l)):
+        value = l[i]
+        while i > 0 and l[i-1] > value:
+            l[i] = l[i-1]
+            i = i - 1
+            #print(i, end=' ')
+        l[i] = value
+    return l
 
 
+@time_decorator
+def bubble_sort(l):
+    for i in range(len(l) - 1):
+        no_swap = True
+        for j in range(len(l) - 1 - i):
+            if l[j] > l[j+1]:
+                l[j], l[j + 1] = l[j+1], l[j]
+                no_swap = False
+                #print(j, end=' ')
+        if no_swap:
+            return l
+    return l
 
 
-print(bubble_sort([8, -11, 9, 1]))
-print(insertion_sort([8, -11, 9, 1]))
+def quick_sort(l):
+    n = len(l)
+    if n<=1:
+        return l
+    pivot = l[n//2]
+    left, mid, right = list(), list(), list()  # 중복값 없애지 않음
+
+    for i in l:
+        if i < pivot:
+            left.append(i)
+        elif i > pivot:
+            right.append(i)
+        else :
+            mid.append(i)
+
+    return quick_sort(left)+mid+quick_sort(right)  #중복값 처리
+
+
+lists1 = [random.randint(1, 100000) for _ in range(10000)]
+lists2 = lists1.copy()
+lists3 = lists1.copy()
+bubble_sort(lists1)
+insertion_sort(lists2)
+
+s = time.time()
+quick_sort(lists3)
+e = time.time()
+print(f'실행시간 : {e - s}초')
